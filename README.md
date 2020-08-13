@@ -1,4 +1,4 @@
-# Based on https://github.com/Semeyn/monit_flussonic_in_zabbix from https://t.me/erlyvideo chat, but translated into English.
+(Based on https://github.com/Semeyn/monit_flussonic_in_zabbix from https://t.me/erlyvideo chat, but translated into English.)
 # Flussonic monitoring for Zabbix
 0. Clone this repository .
 1. Import Template App Flussonic Service API.xml into your Zabbix web interface .
