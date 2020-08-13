@@ -1,4 +1,4 @@
-(Based on https://github.com/Semeyn/monit_flussonic_in_zabbix from https://t.me/erlyvideo chat, but translated into English.)
+🤝 (Based on https://github.com/Semeyn/monit_flussonic_in_zabbix from https://t.me/erlyvideo chat, but translated into English.)
 # Flussonic monitoring for Zabbix
 0. Clone this repository .
 1. Import Template App Flussonic Service API.xml into your Zabbix web interface .
@@ -13,5 +13,5 @@ API_PASS=""
 7. Run service zabbix-agent restart
 8. Whait about 1 min and we can see data from your Flussonic server in Zabbix.
 
-# PS: There is no graphs by default. You can add them by yourself.
+⚠️ PS: There is no graphs by default. You can add them by yourself.
 
