@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-08-13T11:33:37Z</date>
+    <groups>
+        <group>
+            <name>Templates/Modules</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template App Flussonic Service API</template>
+            <name>Template App Flussonic Service API</name>
+            <groups>
+                <group>
+                    <name>Templates/Modules</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Flussonic Information</name>
+                </application>
+                <application>
+                    <name>Flussonic streams</name>
+                </application>
+                <application>
+                    <name>Flussonic streams - Number of clients</name>
+                </application>
+                <application>
+                    <name>Flussonic streams - Recording Status</name>
+                </application>
+                <application>
+                    <name>Flussonic streams  - Url of current stream</name>
+                </application>
+                <application>
+                    <name>Flussonic streems - Errors</name>
+                </application>
+                <application>
+                    <name>Flussonic streems - Status</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Number of authorization errors</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>log.count[/var/log/flussonic/flussonic.log,&quot;failed&quot;]</key>
+                    <history>1d</history>
+                    <trends>0</trends>
+                    <value_type>LOG</value_type>
+                    <applications>
+                        <application>
+                            <name>Flussonic Information</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;100</expression>
+                            <name>Authorization errors with Adrenaline</name>
+                            <priority>DISASTER</priority>
+                            <tags>
+                                <tag>
+                                    <tag>Value</tag>
+                                    <value>{ITEM.VALUE}</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Number of Flussonic processes</name>
+                    <key>proc.num[flussonic,root]</key>
+                    <delay>30s</delay>
+                    <history>60d</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>Flussonic Information</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}=0</expression>
+                            <name>Flussonic service is not running</name>
+                            <priority>DISASTER</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>CPU Load</name>
+                    <key>server_info[cpu_usage]</key>
+                    <history>60d</history>
+                    <trends>90d</trends>
+                    <units>%</units>
+                    <applications>
+                        <application>
+                            <name>Flussonic Information</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Input Speed</name>
+                    <key>server_info[input_kbit]</key>
+                    <delay>3m</delay>
+                    <history>60d</history>
+                    <trends>90d</trends>
+                    <units>bps</units>
+                    <applications>
+                        <application>
+                            <name>Flussonic Information</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <params>1024</params>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Output Speed</name>
+                    <key>server_info[output_kbit]</key>
+                    <delay>3m</delay>
+                    <history>60d</history>
+                    <trends>90d</trends>
+                    <units>bps</units>
+                    <applications>
+                        <application>
+                            <name>Flussonic Information</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>MULTIPLIER</type>
+                            <params>1024</params>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Scheduler Load</name>
+                    <key>server_info[scheduler_load]</key>
+                    <history>60d</history>
+                    <trends>90d</trends>
+                    <units>%</units>
+                    <applications>
+                        <application>
+                            <name>Flussonic Information</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of clients</name>
+                    <key>server_info[total_clients]</key>
+                    <history>60d</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>Flussonic Information</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Number of Streams</name>
+                    <key>server_info[total_streams]</key>
+                    <history>60d</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>Flussonic Information</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>UpTime</name>
+                    <key>server_info[uptime]</key>
+                    <delay>30s</delay>
+                    <history>60d</history>
+                    <trends>90d</trends>
+                    <units>uptime</units>
+                    <applications>
+                        <application>
+                            <name>Flussonic Information</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;10m</expression>
+                            <name>Flussonic service has been restarted (Runtime less than 10 minutes)</name>
+                            <priority>INFO</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Version</name>
+                    <key>server_info[version]</key>
+                    <delay>1d</delay>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Flussonic Information</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Client with maximum number of streams (client IP)</name>
+                    <key>sessions_info[maxsessionscount]</key>
+                    <history>60d</history>
+                    <trends>90d</trends>
+                    <applications>
+                        <application>
+                            <name>Flussonic Information</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&gt;{$MAXSESSIONSCOUNT}</expression>
+                            <name>Many sessions for one client {ITEM.LASTVALUE}</name>
+                            <priority>INFO</priority>
+                            <description>{ITEM.LASTVALUE}</description>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Client with maximum number of streams (client IP)</name>
+                    <key>sessions_info[maxsessionsip]</key>
+                    <history>60d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Flussonic Information</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Media</name>
+                    <key>discovery_media</key>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Stream &quot;{#MEDIA}&quot; Status</name>
+                            <key>media_info[{#MEDIA},alive]</key>
+                            <history>60d</history>
+                            <trends>90d</trends>
+                            <applications>
+                                <application>
+                                    <name>Flussonic streems - Status</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>Flussonic State Media</name>
+                            </valuemap>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Stream &quot;{#MEDIA}&quot; Number of clients</name>
+                            <key>media_info[{#MEDIA},client_count]</key>
+                            <history>60d</history>
+                            <trends>90d</trends>
+                            <applications>
+                                <application>
+                                    <name>Flussonic streams - Number of clients</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Stream &quot;{#MEDIA}&quot; Recording status</name>
+                            <key>media_info[{#MEDIA},dvr_enabled]</key>
+                            <history>60d</history>
+                            <trends>90d</trends>
+                            <applications>
+                                <application>
+                                    <name>Flussonic streams - Recording Status</name>
+                                </application>
+                            </applications>
+                            <valuemap>
+                                <name>Flussinic State DVR</name>
+                            </valuemap>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Stream &quot;{#MEDIA}&quot; Errors in the stream</name>
+                            <key>media_info[{#MEDIA},input_error_rate]</key>
+                            <history>60d</history>
+                            <trends>90d</trends>
+                            <applications>
+                                <application>
+                                    <name>Flussonic streems - Errors</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Stream &quot;{#MEDIA}&quot; Current stream URL</name>
+                            <key>media_info[{#MEDIA},url]</key>
+                            <history>60d</history>
+                            <trends>0</trends>
+                            <value_type>TEXT</value_type>
+                            <applications>
+                                <application>
+                                    <name>Flussonic streams  - Url of current stream</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template App Flussonic Service API:media_info[{#MEDIA},alive].last()}&lt;&gt;1 and {Template App Flussonic Service API:media_info[{#MEDIA},url].str(null)}=0</expression>
+                            <name>Stream &quot;{#MEDIA}&quot; does not work</name>
+                            <priority>WARNING</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template App Flussonic Service API:media_info[{#MEDIA},url].diff()}=1 and {Template App Flussonic Service API:media_info[{#MEDIA},alive].last()}=1</expression>
+                            <name>Stream &quot;{#MEDIA}&quot; has changed stream source</name>
+                            <priority>INFO</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$MAXSESSIONCOUNT}</macro>
+                    <value>10</value>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+    <value_maps>
+        <value_map>
+            <name>Flussinic State DVR</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>Disabled</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Enabled</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>Flussonic State Media</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>No frames</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>Active</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>
