@@ -16,7 +16,7 @@ API_PASS=""
 8. Whait about 1 min and we can see data from your Flussonic server in Zabbix.
 
 ⚠️ PS: There is no graphs by default. You can add them by yourself.
-# ✅ To Resolve ***Zabbix alert*** on Flussonic version 20.08.1
+# ✅ How to Resolve ***Zabbix alert*** on Flussonic version 20.08.1
 > Flussonic service is not running
 1. Connect to your server and run 
 `systemctl status flussonic.service | grep Main`
