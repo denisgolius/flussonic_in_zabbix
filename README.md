@@ -1,4 +1,5 @@
-🧑🏼‍💻 Tested on Zabbix 4.4/5.0
+👌 Tested on Zabbix 4.4, 5.0
+
 🤝 (Based on https://github.com/Semeyn/monit_flussonic_in_zabbix from https://t.me/erlyvideo chat, but translated into English.)
 # Flussonic monitoring for Zabbix
 0. Clone this repository .
