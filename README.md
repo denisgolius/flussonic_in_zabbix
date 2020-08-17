@@ -1,4 +1,4 @@
-👌 Tested on Zabbix 4.4, 5.0
+👌 Tested on Zabbix 4.2, 4.4, 5.0
 
 🤝 (Based on https://github.com/Semeyn/monit_flussonic_in_zabbix from https://t.me/erlyvideo chat, but translated into English.)
 # Flussonic monitoring for Zabbix
@@ -16,4 +16,10 @@ API_PASS=""
 8. Whait about 1 min and we can see data from your Flussonic server in Zabbix.
 
 ⚠️ PS: There is no graphs by default. You can add them by yourself.
-
+# ✅ To Resolve ***Zabbix alert*** on Flussonic version 20.08.1
+> Flussonic service is not running
+1. Connect to your server and run 
+`systemctl status flussonic.service | grep Main`
+2. Copy your service name from round brackets  `Main PID: 15021 (streamer)` - streamer as example.
+3. Go to ***Zabbix Web***->***All templates***->***Template App Flussonic Service API***->***Items***->***Number of Flussonic processes***->***Key*** and replace proc.num[***flussonic***] to ***streamer***. 
+4. Save changes by pressing **Update** button.
