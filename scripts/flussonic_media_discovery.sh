@@ -6,14 +6,14 @@ source /etc/zabbix/flussonic-scripts/flussonic.cfg
 BLOCK_FILE="${TMP_DIR}/loadblock"
 
 function sendDiscovery {
-	media_list=$(ls ${MEDIA_DIR})
+	media_list=$(ls "${MEDIA_DIR}")
 	echo -n '{"data":['
 	for media in $media_list; do echo -n "{\"{#MEDIA}\": \"$media\"},"; done |sed -e 's:\},$:\}:'
 	echo -n ']}'
 }
 
 count=0
-while [ -f $BLOCK_FILE ]
+while [ -f "$BLOCK_FILE" ]
 do
 	(( count++ ))
 done
